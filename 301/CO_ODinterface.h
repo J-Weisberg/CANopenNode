@@ -511,7 +511,7 @@ static inline void OD_requestTPDO(uint8_t *flagsPDO, uint8_t subIndex) {
 #if OD_FLAGS_PDO_SIZE > 0
     if (flagsPDO != NULL && subIndex < (OD_FLAGS_PDO_SIZE * 8)) {
         /* clear subIndex-th bit */
-        uint8_t mask = ~(1 << (subIndex & 0x07));
+        uint8_t mask = static_cast<uint8_t>(~(1U << (subIndex & 0x07U)));
         flagsPDO[subIndex >> 3] &= mask;
     }
 #endif
